@@ -5,14 +5,12 @@ let quotes = [
     { text: "The purpose of our lives is to be happy.", category: "Happiness" }
 ];
 
-
 // Function to display a random quote
 function showRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     const quoteDisplay = document.getElementById('quoteDisplay');
     quoteDisplay.textContent = `"${quotes[randomIndex].text}" - ${quotes[randomIndex].category}`;
 }
-
 
 // Function to add a new quote
 function addQuote() {
@@ -33,7 +31,6 @@ function addQuote() {
         alert("Please fill in both fields!");
     }
 }
-
 
 // Attach event listeners
 document.getElementById('newQuote').addEventListener('click', showRandomQuote);

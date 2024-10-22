@@ -5,6 +5,7 @@ let quotes = [
     { text: "The purpose of our lives is to be happy.", category: "Happiness" }
 ];
 
+
 // Function to display a random quote
 function showRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
@@ -12,22 +13,27 @@ function showRandomQuote() {
     quoteDisplay.textContent = `"${quotes[randomIndex].text}" - ${quotes[randomIndex].category}`;
 }
 
+
 // Function to add a new quote
 function addQuote() {
-    const quoteText = document.getElementById('newQuoteText').value;
-    const quoteCategory = document.getElementById('newQuoteCategory').value;
+    const quoteText = document.getElementById('newQuoteText').value.trim();
+    const quoteCategory = document.getElementById('newQuoteCategory').value.trim();
 
     if (quoteText && quoteCategory) {
         // Create a new quote object
         const newQuote = { text: quoteText, category: quoteCategory };
         quotes.push(newQuote); // Add it to the quotes array
-        document.getElementById('newQuoteText').value = ""; // Clear input
-        document.getElementById('newQuoteCategory').value = ""; // Clear input
+
+        // Clear input fields
+        document.getElementById('newQuoteText').value = ""; 
+        document.getElementById('newQuoteCategory').value = ""; 
+        
         alert("Quote added successfully!");
     } else {
         alert("Please fill in both fields!");
     }
 }
+
 
 // Attach event listeners
 document.getElementById('newQuote').addEventListener('click', showRandomQuote);

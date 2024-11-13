@@ -1,29 +1,44 @@
-const quotes = [
-    { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Inspiration" },
-    { text: "Life is what happens when you're busy making other plans.", category: "Life" },
-    { text: "Get busy living or get busy dying.", category: "Life" },
-    { text: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Motivation" },
+// Array to store quotes (quote text and category)
+let quotes = [
+    { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
+    { text: "In the middle of every difficulty lies opportunity.", category: "Inspiration" },
+    { text: "Life is what happens when you're busy making other plans.", category: "Life" }
 ];
 
+// Function to display a random quote
 function showRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
     const quoteDisplay = document.getElementById("quoteDisplay");
-    quoteDisplay.textContent = `"${quote.text}" - ${quote.category}`;
+    // Pick a random index from the quotes array
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomIndex];
+
+    // Display the quote text and category
+    quoteDisplay.innerHTML = `"${randomQuote.text}" - <i>${randomQuote.category}</i>`;
 }
 
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
-
+// Function to add a new quote dynamically
 function addQuote() {
-    const quoteText = document.getElementById("newQuoteText").value;
-    const quoteCategory = document.getElementById("newQuoteCategory").value;
+    const newQuoteText = document.getElementById("newQuoteText").value;
+    const newQuoteCategory = document.getElementById("newQuoteCategory").value;
 
-    if (quoteText && quoteCategory) {
-        quotes.push({ text: quoteText, category: quoteCategory });
+    // Check if both fields are filled in
+    if (newQuoteText && newQuoteCategory) {
+        // Add the new quote to the quotes array
+        quotes.push({ text: newQuoteText, category: newQuoteCategory });
+
+        // Optionally, clear the input fields after adding the quote
         document.getElementById("newQuoteText").value = '';
         document.getElementById("newQuoteCategory").value = '';
-        alert('Quote added successfully!');
+
+        // Show confirmation message (optional)
+        alert(`New quote added in the category "${newQuoteCategory}"`);
+
+        // Optionally, show the newly added quote immediately
+        showRandomQuote();
     } else {
-        alert('Please fill out both fields.');
+        alert("Please fill in both fields.");
     }
 }
+
+// Event listener to show a new random quote when the button is clicked
+document.getElementById("newQuote").addEventListener("click", showRandomQuote);
